@@ -10,7 +10,7 @@ from flask_limiter import Limiter
 app = Flask(__name__)
 argon2.init_app(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = sqlite_db_path
-app.config["SECRET_KEY"] = "havoc3141"
+app.config["SECRET_KEY"] = "havoc3141"  # dont actually know what this does tbh
 
 db.init_app(app)
 
