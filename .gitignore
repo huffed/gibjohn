@@ -7,7 +7,5 @@ __pycache__/
 .idea/
 .vscode/settings.json
 
-config.py
-create-environment.*
 temp.jpg
 testing.py
