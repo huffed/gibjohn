@@ -19,8 +19,9 @@ login_manager.init_app(app)
 login_manager.login_view = "login"
 
 limiter = Limiter(
-    app,
-    key_func=lambda: request.remote_addr
+    app=app,
+    key_func=lambda: request.remote_addr,
+    storage_uri="memory://"
 )
 
 

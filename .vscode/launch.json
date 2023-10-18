@@ -22,8 +22,7 @@
         "FLASK_DEBUG": "1"
       },
       "args": ["run"],
-      "jinja": true,
-      "justMyCode": true
+      "jinja": true
     },
     {
       "name": "Server (No debugger/reload)",
