@@ -10,7 +10,7 @@ from flask_limiter import Limiter
 app = Flask(__name__)
 argon2.init_app(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = sqlite_db_path
-app.config["SECRET_KEY"] = "havoc3141"  # dont actually know what this does tbh
+app.config["SECRET_KEY"] = "havoc3141"
 
 db.init_app(app)
 
@@ -83,7 +83,7 @@ def register():
     return render_template("register.html", form=form)
 
 
-@app.route("/@<username>")
+@app.route("/profile/<username>")
 @login_required
 @limiter.limit("200 per hour")
 def user_profile(username):

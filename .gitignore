@@ -9,3 +9,5 @@ __pycache__/
 
 temp.jpg
 testing.py
+
+**/__init__.py
