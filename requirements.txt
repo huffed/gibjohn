@@ -8,4 +8,5 @@ email_validator==2.0.0.post2
 pymysql==1.1.0
 Pillow==10.0.0
 Flask-Limiter==3.5.0
-sqlalchemy==2.0.20
+sqlalchemy==2.0.23
+werkzeug==2.3.3

@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
 
-sqlite_db_path = "sqlite:////Users/Jack Jones/MK College/hackathon/database.db"
+sqlite_db_path = "sqlite:////Users/336658/hackathon/database.db"
 
 db = SQLAlchemy()
