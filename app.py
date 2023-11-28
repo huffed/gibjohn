@@ -6,7 +6,6 @@ from flask_login import login_user, LoginManager, login_required, current_user, 
 from config import db, sqlite_db_path
 from extensions import argon2
 from flask_limiter import Limiter
-from flask_caching import Cache
 
 app = Flask(__name__)
 argon2.init_app(app)
@@ -19,8 +18,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
-cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
-cache.init_app(app)
 
 limiter = Limiter(
     app=app,
@@ -41,7 +38,6 @@ def load_user(user_id):
 
 
 @app.route("/")
-@cache.cached(timeout=120)
 def index():
     return render_template("index.html")
 

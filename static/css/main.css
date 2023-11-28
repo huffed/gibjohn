@@ -1,10 +1,49 @@
-@import 'https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap';
+@import url('https://fonts.cdnfonts.com/css/aok-buenos-aires');
+/* https://www.realtimecolors.com/?colors=010403-ffffff-247b7b-c4d9ee-34b273&fonts=Poppins-Poppins */
 
 :root {
-    --background-color: #000;
+    --base-color-black: #010403;
+    --base-background-color: white;
+    --base-background-white: white;
+    --base-color-primary: #247B7B;
+    --base-color-secondary: #C4D9EE;
+    --base-color-accent: #34B273;
+    --base-text-gradient: linear-gradient(120deg,var(--base-color-primary),var(--base-color-accent));
+    --base-font-family: "AOK Buenos Aires","Pulp","OpenSans","Open Sans",sans-serif;
+    --base-h3-font-size: 40px;
+    --base-size: 8px;
+    --base-size-x1: var(--base-size);
+    --base-size-x2: calc(var(--base-size)*2);
+    --base-size-x3: calc(var(--base-size)*3);
+    --base-size-x4: calc(var(--base-size)*4);
+    --base-size-x5: calc(var(--base-size)*5);
+    --base-size-x6: calc(var(--base-size)*6);
+    --base-size-x7: calc(var(--base-size)*7);
+    --base-size-x8: calc(var(--base-size)*8);
+    --base-size-x9: calc(var(--base-size)*9);
+    --base-size-x10: calc(var(--base-size)*10);
 }
 
-html, body {
+body {
     margin: 0;
+    font-family: var(--base-font-family);
+    height: 100vh;
+    background-color: var(--base-background-color);
+    color: var(--base-color-black);
+    font-size: 1.4em;
+    box-sizing: border-box;
 }
 
+.navbar .static-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0 0 var(--base-size-x3) var(--base-size-x3);
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--base-size-x3);
+    padding: var(--base-size-x2) var(--base-size-x3);
+    min-height: 88px;
+    width: 100%;
+}
