@@ -59,11 +59,11 @@ button {
 
 .primary-button {
   transition: @base-transition;
-}
 
-.primary-button:hover {
-  transform: translate(0, -0.2rem);
-  box-shadow: 0 0.6rem 3.1rem -0.6rem @base-color-primary;
+  &:hover {
+    transform: translate(0, -0.2rem);
+    box-shadow: 0 0.6rem 3.1rem -0.6rem @base-color-primary;
+  }
 }
 
 .secondary-button {
@@ -73,11 +73,11 @@ button {
   border-radius: 3.1rem;
   padding: 0.6rem 1.25rem;
   transition: @base-transition;
-}
 
-.secondary-button:hover {
-  transform: translate(0, -0.2rem);
-  transition: transform ease 0.2s;
+  &:hover {
+    transform: translate(0, -0.2rem);
+    transition: transform ease 0.2s;
+  }
 }
 
 .secondary-button-2 {
@@ -85,10 +85,10 @@ button {
   border: none;
   padding: 0.6rem;
   transition: transform ease 0.2s;
-}
 
-a.secondary-button-2.active {
-  color: @base-color-primary;
+  &.active {
+    color: @base-color-primary;
+  }
 }
 
 /* HEADER */
