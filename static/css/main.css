@@ -40,7 +40,6 @@ button {
 }
 
 /* BUTTONS */
-
 .primary-button {
   transition: transform ease 0.2s, box-shadow ease 0.2s;
 }
@@ -65,7 +64,6 @@ button {
 }
 
 /* HEADER */
-
 .navbar {
   position: relative;
   display: flex;
