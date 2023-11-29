@@ -8,7 +8,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* background-color: var(--base-background-color); */
 }
 
 body {
@@ -18,6 +17,8 @@ body {
   color: @base-color-black;
   font-weight: @base-regular-font-weight;
   letter-spacing: 0.025rem;
+  background-color: @base-background-color;
+  overflow-x: hidden;
 }
 
 .color-effect {
@@ -92,7 +93,7 @@ a.secondary-button-2.active {
 
 /* HEADER */
 header {
-  position: fixed;
+  position: relative;
   width: 100%;
   top: 0;
   right: 0;
@@ -103,6 +104,7 @@ header {
   background: transparent;
   padding: 1.75rem 12%;
   transition: @base-transition;
+  margin-bottom: 40px;
 
   .logo {
     font-size: @base-h6-font-size;
@@ -160,7 +162,6 @@ header {
 
 /* MAIN */
 main {
-  margin: 5rem 0;
   width: 100%;
 }
 
