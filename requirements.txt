@@ -11,3 +11,4 @@ Flask-Limiter==3.5.0
 sqlalchemy==2.0.23
 # install this separately: werkzeug==2.3.3
 flask_caching==2.1.0
+flask_assets==2.1.0

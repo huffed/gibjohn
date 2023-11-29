@@ -1,26 +1,27 @@
-<nav class="navbar">
-    <a href="/" class="logo">gibjohn</a>
-    <div class="nav-links">
-        <ul>
-            <li><a href="#">example</a></li>
-            <li><a href="#">example2</a></li>
-            <li><a href="#">example3</a></li>
-        </ul>
+<header>
+    <a href="/" class="color-effect logo">gibjohn</a>
+    <ul class="nav-links">
+        <li><a href="#" class="secondary-button-2 active">example</a></li>
+        <li><a href="#" class="secondary-button-2">example2</a></li>
+        <li><a href="#" class="secondary-button-2">example3</a></li>
+    </ul>
+    <div class="main-buttons">
+        <a href="#" class="user"><i class="fa-solid fa-user"></i>Sign In</a>
+        <a href="#">Register</a>
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
     </div>
-    <div class="toggle-btn"><i class="fa-solid fa-bars"></i></div>
-</nav>
+</header>
 
 <script>
-    const toggleBtn = document.querySelector('.toggle_btn')
-    const toggleBtnIcon = document.querySelector('.toggle_btn i')
-    const dropDownMenu = document.querySelector('.dropdown_menu')
+    let menu = document.querySelector('#menu-icon')
+    let dropDownMenu = document.querySelector('.nav-links')
 
-    toggleBtn.onclick = function () {
-        dropDownMenu.classList.toggle('open')
+    menu.onclick = () => {
+        dropDownMenu.classList.toggle('open');
         const isOpen = dropDownMenu.classList.contains('open')
 
-        toggleBtnIcon.classList = isOpen
-        ? 'fas fa-xmark'
-        : 'fas fa-bars'
+        menu.classList = isOpen
+            ? 'fa-solid fa-xmark'
+            : 'fa-solid fa-bars'
     }
 </script>

@@ -6,11 +6,14 @@ from flask_login import login_user, LoginManager, login_required, current_user, 
 from config import db, sqlite_db_path
 from extensions import argon2
 from flask_limiter import Limiter
+from flask_less import lessc
 
 app = Flask(__name__)
 argon2.init_app(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = sqlite_db_path
 app.config["SECRET_KEY"] = "havoc3141"
+
+lessc(app)
 
 db.init_app(app)
 

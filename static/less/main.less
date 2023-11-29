@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;600;700&display=swap");
+@import url("styles.less");
+/* https://www.realtimecolors.com/?colors=010403-ffffff-247b7b-c4d9ee-34b273&fonts=Poppins-Poppins */
+
+/* TODO: add dark mode */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* background-color: var(--base-background-color); */
+}
+
+body {
+  font-family: @base-font-family;
+  font-size: @base-body-font-size;
+  height: 100vh;
+  color: @base-color-black;
+  font-weight: @base-regular-font-weight;
+  letter-spacing: 0.025rem;
+}
+
+.color-effect {
+  background: @base-text-gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.font-effect {
+  font-style: italic;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: @base-color-black;
+  color: transparent;
+}
+
+/* BUTTONS */
+li,
+a,
+button {
+  font-family: @base-font-family;
+  font-weight: @base-bold-font-weight;
+  font-size: @base-button-large-font-size;
+  color: @base-color-black;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+button {
+  margin-left: 1.25rem;
+  padding: 0.5625rem 1.5625rem;
+  background-color: @base-color-primary;
+  border: none;
+  border-radius: 3.125rem;
+  cursor: pointer;
+  color: @base-color-white;
+}
+
+.primary-button {
+  transition: transform ease 0.2s, box-shadow ease 0.2s;
+}
+
+.primary-button:hover {
+  transform: translate(0, -0.1875rem);
+  box-shadow: 0 0.625rem 3.125rem -0.625rem @base-color-primary;
+}
+
+.secondary-button {
+  background-color: @base-color-secondary;
+  cursor: pointer;
+  border: none;
+  border-radius: 3.125rem;
+  padding: 0.5625rem 1.25rem;
+  transition: transform ease 0.2s;
+}
+
+.secondary-button:hover {
+  transform: translate(0, -0.1875rem);
+  transition: transform ease 0.2s;
+}
+
+.secondary-button-2 {
+  cursor: pointer;
+  border: none;
+  padding: 0.6rem;
+  transition: transform ease 0.2s;
+}
+
+a.secondary-button-2.active {
+  color: @base-color-primary;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  padding: 1.75rem 12%;
+  transition: @base-transition;
+
+  .logo {
+    font-size: @base-h6-font-size;
+    font-weight: @base-heavy-font-weight;
+  }
+
+  .nav-links {
+    display: flex;
+
+    a {
+      margin: 0rem 1.875rem;
+      transition: @base-transition;
+
+      &:hover {
+        color: @base-color-primary;
+      }
+    }
+  }
+
+  .main-buttons {
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-right: 1.6rem;
+      margin-left: 0.625rem;
+      transition: @base-transition;
+
+      &:hover {
+        color: @base-color-primary;
+      }
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+
+      i {
+        color: @base-color-primary;
+        font-size: 1.2rem;
+        margin-right: 0.6rem;
+      }
+    }
+  }
+
+  #menu-icon {
+    font-size: @base-h6-font-size;
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+  }
+}
+
+/* TODO: work on this: https://www.youtube.com/watch?v=H8ThscWsQV8 */
+
+/* MAIN */
+main {
+  margin: 5rem 0;
+  width: 100%;
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 80rem) {
+  header {
+    padding: 0.9rem 2%;
+    transition: 0.2s;
+  }
+
+  .nav-links a {
+    color: @base-color-white;
+    padding: 0.3rem 0;
+    margin: 0 1.25rem;
+  }
+}
+
+@media screen and (max-width: 68.125rem) {
+  header #menu-icon {
+    display: block;
+  }
+
+  header .nav-links {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    width: 17rem;
+    height: 29vh;
+    background: @base-color-primary;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 0.625rem;
+    transition: @base-transition;
+
+    a {
+      display: block;
+      margin: 0.75rem 0;
+      padding: 0 1.5625rem;
+      transition: @base-transition;
+
+      &:hover {
+        color: @base-color-accent;
+        transform: translateY(0.3125rem);
+      }
+
+      &.active {
+        color: @base-color-white;
+      }
+    }
+
+    &.open {
+      right: 2%;
+    }
+  }
+}
