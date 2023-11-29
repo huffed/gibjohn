@@ -1,49 +1,177 @@
-@import url('https://fonts.cdnfonts.com/css/aok-buenos-aires');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@import url("styles.css");
 /* https://www.realtimecolors.com/?colors=010403-ffffff-247b7b-c4d9ee-34b273&fonts=Poppins-Poppins */
 
-:root {
-    --base-color-black: #010403;
-    --base-background-color: white;
-    --base-background-white: white;
-    --base-color-primary: #247B7B;
-    --base-color-secondary: #C4D9EE;
-    --base-color-accent: #34B273;
-    --base-text-gradient: linear-gradient(120deg,var(--base-color-primary),var(--base-color-accent));
-    --base-font-family: "AOK Buenos Aires","Pulp","OpenSans","Open Sans",sans-serif;
-    --base-h3-font-size: 40px;
-    --base-size: 8px;
-    --base-size-x1: var(--base-size);
-    --base-size-x2: calc(var(--base-size)*2);
-    --base-size-x3: calc(var(--base-size)*3);
-    --base-size-x4: calc(var(--base-size)*4);
-    --base-size-x5: calc(var(--base-size)*5);
-    --base-size-x6: calc(var(--base-size)*6);
-    --base-size-x7: calc(var(--base-size)*7);
-    --base-size-x8: calc(var(--base-size)*8);
-    --base-size-x9: calc(var(--base-size)*9);
-    --base-size-x10: calc(var(--base-size)*10);
+/* TODO: add dark mode */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* background-color: var(--base-background-color); */
 }
 
 body {
-    margin: 0;
-    font-family: var(--base-font-family);
-    height: 100vh;
-    background-color: var(--base-background-color);
-    color: var(--base-color-black);
-    font-size: 1.4em;
-    box-sizing: border-box;
+  font-family: var(--base-font-family);
+  font-size: var(--base-body-font-size);
+  height: 100vh;
+  color: var(--base-color-black);
+  font-weight: var(--base-regular-font-weight);
 }
 
-.navbar .static-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 0 0 var(--base-size-x3) var(--base-size-x3);
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    gap: var(--base-size-x3);
-    padding: var(--base-size-x2) var(--base-size-x3);
-    min-height: 88px;
-    width: 100%;
+li,
+a,
+button {
+  font-family: var(--base-font-family);
+  font-weight: var(--base-medium-font-weight);
+  font-size: var(--base-button-medium-font-size);
+  color: var(--base-color-black);
+  text-decoration: none;
+}
+
+button {
+  margin-left: 20px;
+  padding: 9px 25px;
+  background-color: var(--base-color-primary);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  color: var(--base-color-white);
+}
+
+/* BUTTONS */
+
+.primary-button {
+  transition: transform ease 0.2s, box-shadow ease 0.2s;
+}
+
+.primary-button:hover {
+  transform: translate(0, -3px);
+  box-shadow: 0 10px 50px -10px var(--base-color-primary);
+}
+
+.secondary-button {
+  background-color: var(--base-color-secondary);
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  padding: 9px 20px;
+  transition: transform ease 0.2s;
+}
+
+.secondary-button:hover {
+  transform: translate(0, -3px);
+  transition: transform ease 0.2s;
+}
+
+/* HEADER */
+
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px 10%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.navbar .logo {
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.navbar .nav_links {
+  list-style: none;
+}
+
+.navbar .nav_links li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.navbar .nav_links li a {
+  background-color: transparent;
+}
+
+.navbar .toggle_btn {
+  color: var(--base-color-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+/* DROPDOWN MENU */
+.dropdown_menu {
+  display: none;
+  position: absolute;
+  right: 2rem;
+  top: 60px;
+  width: 300px;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+  transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open {
+  height: 240px;
+}
+
+.dropdown_menu.open li {
+  margin-bottom: 10px;
+}
+
+.dropdown_menu li {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0;
+}
+
+.dropdown_menu .primary-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-left: 0;
+}
+
+.dropdown_menu .primary-button:hover,
+.dropdown_menu .secondary-button:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* MAIN */
+
+main {
+  margin: 5rem 0;
+  width: 100%;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+  .navbar nav,
+  .navbar .cta {
+    display: none;
+  }
+
+  .navbar .toggle_btn {
+    display: block;
+  }
+
+  .dropdown_menu {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .dropdown_menu {
+    left: 2rem;
+    width: unset;
+  }
 }
