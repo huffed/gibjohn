@@ -1,46 +1,50 @@
 /* https://www.realtimecolors.com/?colors=010403-ffffff-247b7b-c4d9ee-34b273&fonts=Poppins-Poppins */
 
 :root {
-    --base-color-black: #010403;
-    --base-background-color: white;
-    --base-color-white: white;
-    --base-color-primary: #247B7B;
-    --base-color-primary-rgb: 36, 123, 123;
-    --base-color-secondary: #C4D9EE;
-    --base-color-secondary-rgb: 196, 217, 238;
-    --base-color-accent: #34B273;
-    --base-text-gradient: linear-gradient(120deg,var(--base-color-primary),var(--base-color-accent));
-    --base-font-family: "Montserrat","Pulp","OpenSans","Open Sans",sans-serif;
-    --base-h3-font-size: 40px;
-    --base-size: 8px;
-    --base-size-x1: var(--base-size);
-    --base-size-x2: calc(var(--base-size)*2);
-    --base-size-x3: calc(var(--base-size)*3);
-    --base-size-x4: calc(var(--base-size)*4);
-    --base-size-x5: calc(var(--base-size)*5);
-    --base-size-x6: calc(var(--base-size)*6);
-    --base-size-x7: calc(var(--base-size)*7);
-    --base-size-x8: calc(var(--base-size)*8);
-    --base-size-x9: calc(var(--base-size)*9);
-    --base-size-x10: calc(var(--base-size)*10);
-    --base-heavy-font-weight: 800;
-    --base-bold-font-weight: bold;
-    --base-medium-font-weight: 200;
-    --base-regular-font-weight: 500;
-    --base-thin-font-weight: 200;
-    --base-h1-font-size: 80px;
-    --base-h2-font-size: 60px;
-    --base-h3-font-size: 40px;
-    --base-h4-font-size: 30px;
-    --base-h5-font-size: 24px;
-    --base-h6-font-size: 20px;
-    --base-body-font-size: 16px;
-    --base-caption-font-size: 14px;
-    --base-small-font-size: 12px;
-    --base-tiny-font-size: 10px;
-    --base-button-xlarge-font-size: var(--base-body-font-size);
-    --base-button-large-font-size: var(--base-body-font-size);
-    --base-button-medium-font-size: var(--base-caption-font-size);
-    --base-button-small-font-size: var(--base-small-font-size);
-    --base-transition: all 0.3s ease 0s;
+  --base-color-black: #010403;
+  --base-background-color: white;
+  --base-color-white: white;
+  --base-color-primary: #247b7b;
+  --base-color-primary-rgb: 36, 123, 123;
+  --base-color-secondary: #c4d9ee;
+  --base-color-secondary-rgb: 196, 217, 238;
+  --base-color-accent: #34b273;
+  --base-text-gradient: linear-gradient(
+    120deg,
+    var(--base-color-primary),
+    var(--base-color-accent)
+  );
+  --base-font-family: "Montserrat", "Pulp", "OpenSans", "Open Sans", sans-serif;
+  --base-h3-font-size: 2.5rem;
+  --base-size: 0.5px;
+  --base-size-x1: var(--base-size);
+  --base-size-x2: calc(var(--base-size) * 2);
+  --base-size-x3: calc(var(--base-size) * 3);
+  --base-size-x4: calc(var(--base-size) * 4);
+  --base-size-x5: calc(var(--base-size) * 5);
+  --base-size-x6: calc(var(--base-size) * 6);
+  --base-size-x7: calc(var(--base-size) * 7);
+  --base-size-x8: calc(var(--base-size) * 8);
+  --base-size-x9: calc(var(--base-size) * 9);
+  --base-size-x10: calc(var(--base-size) * 10);
+  --base-heavy-font-weight: 800;
+  --base-bold-font-weight: bold;
+  --base-medium-font-weight: 200;
+  --base-regular-font-weight: 500;
+  --base-thin-font-weight: 200;
+  --base-h1-font-size: 5rem;
+  --base-h2-font-size: 3.75rem;
+  --base-h3-font-size: 2.5rem;
+  --base-h4-font-size: 1.875rem;
+  --base-h5-font-size: 1.5rem;
+  --base-h6-font-size: 1.25rem;
+  --base-body-font-size: 1rem;
+  --base-caption-font-size: 0.875rem;
+  --base-small-font-size: 0.75rem;
+  --base-tiny-font-size: 0.625rem;
+  --base-button-xlarge-font-size: var(--base-body-font-size);
+  --base-button-large-font-size: var(--base-body-font-size);
+  --base-button-medium-font-size: var(--base-caption-font-size);
+  --base-button-small-font-size: var(--base-small-font-size);
+  --base-transition: all 0.3s ease 0s;
 }
