@@ -1,27 +1,43 @@
 <header>
-    <a href="/" class="color-effect logo">gibjohn</a>
-    <ul class="nav-links">
-        <li><a href="#" class="secondary-button-2 active">Home</a></li>
-        <li><a href="#" class="secondary-button-2">example2</a></li>
-        <li><a href="#" class="secondary-button-2">example3</a></li>
-    </ul>
-    <div class="main-buttons">
-        <a href="#" class="user"><i class="fa-solid fa-user"></i>Sign In</a>
-        <a href="#">Register</a>
-        <i class="fa-solid fa-bars" id="menu-icon"></i>
-    </div>
+  <a href="/" class="color-effect logo">gibjohn</a>
+  <ul class="nav-links">
+    <li>
+      <a
+        href="{{url_for('index')}}"
+        class="secondary-button-2{% if active_page == url_for('index') %} active{% endif %}"
+        >Home</a
+      >
+    </li>
+    <li>
+      <a
+        href="{{url_for('courses')}}"
+        class="secondary-button-2{% if active_page == 'courses' %} active{% endif %}"
+        >Courses</a
+      >
+    </li>
+    <li>
+      <a
+        href="{{url_for('tutors')}}"
+        class="secondary-button-2{% if active_page == 'tutors' %} active{% endif %}"
+        >Tutors</a
+      >
+    </li>
+  </ul>
+  <div class="main-buttons">
+    <a href="#" class="user"><i class="fa-solid fa-user"></i>Sign In</a>
+    <a href="#">Register</a>
+    <i class="fa-solid fa-bars" id="menu-icon"></i>
+  </div>
 </header>
 
 <script>
-    let menu = document.querySelector('#menu-icon')
-    let dropDownMenu = document.querySelector('.nav-links')
+  let menu = document.querySelector("#menu-icon");
+  let dropDownMenu = document.querySelector(".nav-links");
 
-    menu.onclick = () => {
-        dropDownMenu.classList.toggle('open');
-        const isOpen = dropDownMenu.classList.contains('open')
+  menu.onclick = () => {
+    dropDownMenu.classList.toggle("open");
+    const isOpen = dropDownMenu.classList.contains("open");
 
-        menu.classList = isOpen
-            ? 'fa-solid fa-xmark'
-            : 'fa-solid fa-bars'
-    }
+    menu.classList = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+  };
 </script>

@@ -1,0 +1,309 @@
+{% extends "base.html" %} {% include "header.html" %} {% block content %}
+{{error_code}} {% set numbers_to_code = {'zero': '
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+', 'one': '
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+', 'two': '
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+', 'three': '
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+', 'four': '
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+', 'five': '
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+', 'six': '
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+', 'seven': '
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+', 'eight': '
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+', 'nine': '
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell empty"></div>
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+
+<div class="cell empty"></div>
+<div class="cell filled"><div class="bug"></div></div>
+<div class="cell filled"><div class="bug"></div></div>
+'} %} {% set numbers = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5:
+'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine'} %}
+
+<button class="error-code">
+  {% for digit in (error_code|string) %}
+  <div class="number {{ numbers[digit|int] }}">
+    {{ numbers_to_code[numbers[digit|int]]|safe }}
+  </div>
+  {% endfor %}
+</button>
+{% endblock content %}
