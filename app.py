@@ -137,16 +137,13 @@ def dashboard():
     return render_template("dashboard.html", user=current_user, username=current_user.username, uid=current_user.uid)
 
 
-@app.route('/error')
-def error():
-    return render_template('error.html', error_code=403)
-
-
 @app.errorhandler(Exception)
 def handle_exception(error):
     error_message = str(error)
-    error.code = 403
-    return render_template('error.html', error_code=error.code), error.code
+    try:
+        return render_template('error.html', error_code=str(error.code)), error.code
+    except AttributeError:
+        return render_template('error.html', error_code="500"), 500
 
 
 @app.errorhandler(429)
