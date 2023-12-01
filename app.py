@@ -22,12 +22,12 @@ def load_user(user_id):
 
 @app.context_processor
 def context_processor():
-    return dict(user=current_user)
+    return dict(user=current_user, active_page=request.path)
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", active_page=request.path)
+    return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -47,7 +47,7 @@ def register():
             db.session.rollback()
             raise error
 
-    return render_template("register-login.html", form=form, active_page=request.path, form_type=request.path.strip("/"))
+    return render_template("register-login.html", form=form, form_type=request.path.strip("/"))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -64,9 +64,9 @@ def login():
                        password=user.password))
             return redirect(url_for("dashboard"))
         else:
-            return render_template("register-login.html", form=form, active_page=request.path, form_type=request.path.strip("/"))
+            return render_template("register-login.html", form=form, form_type=request.path.strip("/"))
 
-    return render_template("register-login.html", form=form, active_page=request.path, form_type=request.path.strip("/"))
+    return render_template("register-login.html", form=form, form_type=request.path.strip("/"))
 
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -94,7 +94,7 @@ def user_profile(username):
     user = db.session.execute(query, {"username": username}).fetchone()
 
     if user:
-        return render_template("user-profile.html", user=User(uid=user.uid, username=user.username), username=user.username, uid=user.uid)
+        return render_template("user-profile.html")
     else:
         raise Exception("User not found")
 
@@ -102,22 +102,22 @@ def user_profile(username):
 @app.route("/dashboard", methods=["GET", "POST"])
 @login_required
 def dashboard():
-    return render_template("dashboard.html", user=current_user, username=current_user.username, uid=current_user.uid)
+    return render_template("dashboard.html")
 
 
 @app.errorhandler(Exception)
 def handle_exception(error):
     error_message = "Looks like you found a bug."
     try:
-        return render_template('error.html', error_code=error.code, error_message=error_message, active_page=request.path), error.code
+        return render_template('error.html', error_code=error.code, error_message=error_message), error.code
     except:
-        return render_template('error.html', error_code=500, error_message=error_message, active_page=request.path), "500"
+        return render_template('error.html', error_code=500, error_message=error_message), "500"
 
 
 @app.errorhandler(404)
 def handle_exception(error):
     error_message = "Page not found."
-    return render_template('error.html', error_code=error.code, error_message=error_message, active_page=request.path), error.code
+    return render_template('error.html', error_code=error.code, error_message=error_message), error.code
 
 
 @app.errorhandler(429)
