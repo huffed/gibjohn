@@ -7,14 +7,14 @@ from extensions import argon2
 
 class RegisterForm(FlaskForm):
     username = StringField(validators=[InputRequired(), Length(
-        min=3, max=20, message=None)], render_kw={"placeholder": "username"})
+        min=3, max=20, message=None)])
 
     password = PasswordField(validators=[InputRequired(), EqualTo("confirm", message="Passwords don't match"), Length(
-        min=4)], render_kw={"placeholder": "password"})
+        min=4)])
 
-    confirm = PasswordField(render_kw={"placeholder": "confirm password"})
+    confirm = PasswordField()
 
-    submit = SubmitField("submit")
+    submit = SubmitField("Submit")
 
     def validate_username(self, username):
         existing_user_username = User.query.filter_by(

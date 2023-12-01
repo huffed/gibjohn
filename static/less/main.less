@@ -208,6 +208,78 @@ header {
 main {
   width: 100%;
 
+  // REGISTER PAGE
+  .register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    .register-container {
+      position: relative;
+      width: 25rem;
+      height: 28.125rem;
+      background-color: @base-color-accent;
+      border-radius: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        font-size: @base-h4-font-size;
+        color: @base-color-white;
+      }
+
+      .input-box {
+        position: relative;
+        width: 19.375rem;
+        margin: 1.875rem 0;
+        border-bottom: 0.125rem solid @base-color-white;
+
+        label {
+          position: absolute;
+          top: 50%;
+          left: 0.3rem;
+          transform: translateY(-50%);
+          font-size: @base-body-font-size;
+          color: @base-color-white;
+          pointer-events: none;
+          transition: @base-transition;
+        }
+
+        input {
+          width: 100%;
+          height: 3rem;
+          background: transparent;
+          border: none;
+          outline: none;
+          font-size: @base-body-font-size;
+          color: @base-color-white;
+          padding: 0 2.2rem 0 0.5rem;
+
+          &:focus ~ label,
+          &:valid ~ label {
+            top: -0.3rem;
+          }
+
+          &[type="password"]:focus::-ms-reveal {
+            display: block;
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+          }
+        }
+
+        i {
+          position: absolute;
+          right: 0.5rem;
+          color: @base-color-white;
+          font-size: @base-h6-font-size;
+          line-height: 3.3rem;
+        }
+      }
+    }
+  }
+
   // ERROR PAGE
   .error {
     position: absolute;
