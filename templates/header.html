@@ -11,21 +11,23 @@
     <li>
       <a
         href="{{url_for('courses')}}"
-        class="secondary-button-2{% if active_page == 'courses' %} active{% endif %}"
+        class="secondary-button-2{% if active_page == '/courses' %} active{% endif %}"
         >Courses</a
       >
     </li>
     <li>
       <a
         href="{{url_for('tutors')}}"
-        class="secondary-button-2{% if active_page == 'tutors' %} active{% endif %}"
+        class="secondary-button-2{% if active_page == '/tutors' %} active{% endif %}"
         >Tutors</a
       >
     </li>
   </ul>
   <div class="main-buttons">
-    <a href="#" class="user"><i class="fa-solid fa-user"></i>Sign In</a>
-    <a href="#">Register</a>
+    <a {% if active_page == '/login' %}class="active"{% endif %} href="{{url_for('login')}}" class="user"
+      ><i class="fa-solid fa-user"></i>Sign In</a
+    >
+    <a {% if active_page == '/register' %}class="active"{% endif %} href="{{url_for('register')}}">Register</a>
     <i class="fa-solid fa-bars" id="menu-icon"></i>
   </div>
 </header>

@@ -79,7 +79,7 @@ def register():
         db.session.commit()
         return redirect(url_for('login'))
 
-    return render_template("register.html", form=form)
+    return render_template("register.html", form=form, active_page=request.path)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -98,7 +98,7 @@ def login():
         else:
             return render_template("login.html", form=form)
 
-    return render_template("login.html", form=form)
+    return render_template("login.html", form=form, active_page=request.path)
 
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -140,13 +140,13 @@ def dashboard():
 @app.errorhandler(Exception)
 def handle_exception(error):
     error_message = "Looks like you found a bug."
-    return render_template('error.html', error_code=error.code, error_message=error_message), error.code
+    return render_template('error.html', error_code=error.code, error_message=error_message, active_page=request.path), error.code
 
 
 @app.errorhandler(404)
 def handle_exception(error):
     error_message = "Page not found."
-    return render_template('error.html', error_code=error.code, error_message=error_message), error.code
+    return render_template('error.html', error_code=error.code, error_message=error_message, active_page=request.path), error.code
 
 
 @app.errorhandler(429)
