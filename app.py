@@ -139,11 +139,14 @@ def dashboard():
 
 @app.errorhandler(Exception)
 def handle_exception(error):
-    error_message = str(error)
-    try:
-        return render_template('error.html', error_code=str(error.code)), error.code
-    except AttributeError:
-        return render_template('error.html', error_code="500"), 500
+    error_message = "Looks like you found a bug."
+    return render_template('error.html', error_code=error.code, error_message=error_message), error.code
+
+
+@app.errorhandler(404)
+def handle_exception(error):
+    error_message = "Page not found."
+    return render_template('error.html', error_code=error.code, error_message=error_message), error.code
 
 
 @app.errorhandler(429)

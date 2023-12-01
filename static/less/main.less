@@ -3,6 +3,7 @@
 // https://www.realtimecolors.com/?colors=010403-ffffff-247b7b-c4d9ee-34b273&fonts=Poppins-Poppins
 
 // TODO: add dark mode
+// TODO: add login: https://www.youtube.com/watch?v=H8ThscWsQV8
 
 * {
   box-sizing: border-box;
@@ -159,230 +160,167 @@ header {
   }
 }
 
-// TODO: work on this: https://www.youtube.com/watch?v=H8ThscWsQV8
-
 // MAIN
 main {
   width: 100%;
-}
 
-// ERROR PAGE
-main .error {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.error .error-code {
-  display: flex;
-  position: relative;
-  border: 0;
-  font-weight: @base-bold-font-weight;
-  background: none;
-  white-space: nowrap;
-  padding: 4vw;
-  border-radius: 1vw;
-  transition: all 250ms ease;
-
-  &:after {
-    content: "Looks like you found a bug.";
+  // ERROR PAGE
+  .error {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: @base-h3-font-size;
-    color: @base-color-accent;
-    opacity: 0;
-    transition: all 500ms ease;
-    transition-delay: 1000ms;
-  }
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 
-  &:hover:after {
-    opacity: 1;
-  }
+    .error-code {
+      margin-left: 0;
+      display: flex;
+      position: relative;
+      border: 0;
+      font-weight: @base-bold-font-weight;
+      background: none;
+      white-space: nowrap;
+      padding: 4vw;
+      border-radius: 1vw;
+      transition: all 250ms ease;
 
-  &:hover .cell.filled:nth-child(1) {
-    transform: rotate(15deg);
-  }
-  &:hover .cell.filled:nth-child(2) {
-    transform: rotate(30deg);
-  }
-  &:hover .cell.filled:nth-child(3) {
-    transform: rotate(45deg);
-  }
-  &:hover .cell.filled:nth-child(4) {
-    transform: rotate(60deg);
-  }
-  &:hover .cell.filled:nth-child(5) {
-    transform: rotate(75deg);
-  }
-  &:hover .cell.filled:nth-child(6) {
-    transform: rotate(90deg);
-  }
-  &:hover .cell.filled:nth-child(7) {
-    transform: rotate(105deg);
-  }
-  &:hover .cell.filled:nth-child(8) {
-    transform: rotate(120deg);
-  }
-  &:hover .cell.filled:nth-child(9) {
-    transform: rotate(135deg);
-  }
-  &:hover .cell.filled:nth-child(10) {
-    transform: rotate(150deg);
-  }
-  &:hover .cell.filled:nth-child(11) {
-    transform: rotate(165deg);
-  }
-  &:hover .cell.filled:nth-child(12) {
-    transform: rotate(180deg);
-  }
-  &:hover .cell.filled:nth-child(13) {
-    transform: rotate(195deg);
-  }
-  &:hover .cell.filled:nth-child(14) {
-    transform: rotate(210deg);
-  }
-  &:hover .cell.filled:nth-child(15) {
-    transform: rotate(225deg);
-  }
-  &:hover .cell.filled:nth-child(16) {
-    transform: rotate(240deg);
-  }
-  &:hover .cell.filled:nth-child(17) {
-    transform: rotate(255deg);
-  }
-  &:hover .cell.filled:nth-child(18) {
-    transform: rotate(270deg);
-  }
-  &:hover .cell.filled:nth-child(19) {
-    transform: rotate(285deg);
-  }
-  &:hover .cell.filled:nth-child(20) {
-    transform: rotate(300deg);
-  }
-  &:hover .cell.filled:nth-child(21) {
-    transform: rotate(315deg);
-  }
-  &:hover .cell.filled:nth-child(22) {
-    transform: rotate(330deg);
-  }
-  &:hover .cell.filled:nth-child(23) {
-    transform: rotate(345deg);
-  }
-  &:hover .cell.filled:nth-child(24) {
-    transform: rotate(360deg);
-  }
-  &:hover .number {
-    grid-gap: 2vw;
-  }
-  &:hover .bug {
-    transform: translateY(-200vh);
-    transition-delay: 500ms;
-  }
-  &:hover .bug:before {
-    top: -0.5vw;
-  }
-  &:hover .bug:after {
-    left: -0.75vw;
-    right: -0.75vw;
-    height: 1.5vw;
-  }
-}
+      @keyframes skitter {
+        0%,
+        100% {
+          transform: rotate(-35deg);
+        }
+        50% {
+          transform: rotate(35deg);
+        }
+      }
 
-.error .number {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  transition: all 500ms ease;
-  grid-gap: 0.25vw;
-  margin: auto 2vw;
-}
+      &:after {
+        content: attr(error-message);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: @base-h3-font-size;
+        color: @base-color-accent;
+        opacity: 0;
+        transition: all 500ms ease;
+        transition-delay: 1000ms;
+      }
 
-.cell.filled {
-  transition: all 500ms ease;
-}
+      &:hover:after {
+        opacity: 1;
+      }
 
-.error .bug {
-  background: @base-color-accent;
-  transition: transform 4000ms ease;
-  width: 2.25vw;
-  height: 2.5vw;
-  position: relative;
-  border-radius: 100%;
-  transition-delay: 0;
+      // HOVER ANIMATIONS
+      .generate-hover-animations(@i: 1) when (@i <= 24) {
+        &:hover .cell.filled:nth-child(@{i}) {
+          transform: rotate(15deg * @i);
+        }
+        .generate-hover-animations(@i + 1);
+      }
 
-  &:before {
-    content: "";
-    height: 1.5vw;
-    width: 1.5vw;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0.375vw;
-    background: @base-color-accent;
-    border-radius: 100%;
-    z-index: -1;
-    transition: all 1000ms ease;
-  }
+      .generate-hover-animations();
 
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0.5vw;
-    right: 0.5vw;
-    bottom: 0.5vw;
-    height: 0;
-    transition: all 250ms ease;
-    animation: infinite skitter 100ms ease;
-    background: top left/100% 100%
-        linear-gradient(
-          transparent,
-          transparent 45%,
-          @base-color-accent 45%,
-          @base-color-accent 55%,
-          transparent 55%
-        ),
-      top left/100% 100%
-        linear-gradient(
-          to bottom right,
-          transparent,
-          transparent 45%,
-          @base-color-accent 45%,
-          @base-color-accent 55%,
-          transparent 55%
-        ),
-      top left/100% 100%
-        linear-gradient(
-          to bottom left,
-          transparent,
-          transparent 45%,
-          @base-color-accent 45%,
-          @base-color-accent 55%,
-          transparent 55%
-        );
-  }
-}
+      &:hover .number {
+        grid-gap: 2vw;
+      }
+      &:hover .bug {
+        transform: translateY(-200vh);
+        transition-delay: 500ms;
+        &:before {
+          top: -0.5vw;
+        }
+        &:after {
+          left: -0.75vw;
+          right: -0.75vw;
+          height: 1.5vw;
+        }
+      }
+    }
 
-@keyframes skitter {
-  0%,
-  100% {
-    transform: rotate(-35deg);
-  }
-  50% {
-    transform: rotate(35deg);
+    .number {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      transition: all 500ms ease;
+      grid-gap: 0.25vw;
+      margin: auto 2vw;
+    }
+
+    .cell.filled {
+      transition: all 500ms ease;
+    }
+
+    .bug {
+      background: @base-color-accent;
+      transition: transform 4000ms ease;
+      width: 2.25vw;
+      height: 2.5vw;
+      position: relative;
+      border-radius: 100%;
+      transition-delay: 0;
+
+      &:before {
+        content: "";
+        height: 1.5vw;
+        width: 1.5vw;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0.375vw;
+        background: @base-color-accent;
+        border-radius: 100%;
+        z-index: -1;
+        transition: all 1000ms ease;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0.5vw;
+        right: 0.5vw;
+        bottom: 0.5vw;
+        height: 0;
+        transition: all 250ms ease;
+        animation: infinite skitter 100ms ease;
+        background: top left/100% 100%
+            linear-gradient(
+              transparent,
+              transparent 45%,
+              @base-color-accent 45%,
+              @base-color-accent 55%,
+              transparent 55%
+            ),
+          top left/100% 100%
+            linear-gradient(
+              to bottom right,
+              transparent,
+              transparent 45%,
+              @base-color-accent 45%,
+              @base-color-accent 55%,
+              transparent 55%
+            ),
+          top left/100% 100%
+            linear-gradient(
+              to bottom left,
+              transparent,
+              transparent 45%,
+              @base-color-accent 45%,
+              @base-color-accent 55%,
+              transparent 55%
+            );
+      }
+    }
   }
 }
 

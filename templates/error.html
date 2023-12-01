@@ -16,7 +16,7 @@
   { 0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six',
   7: 'seven', 8: 'eight', 9: 'nine' } %}
 
-  <button class="error-code">
+  <button class="error-code" error-message="{{ error_message }}">
     {% for digit in (error_code|string) %}
     <div class="number {{ numbers[digit|int] }}">
       {% for row in numbers_to_code[numbers[digit|int]] %} {% for cell in row %}
