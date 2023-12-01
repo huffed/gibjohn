@@ -2,32 +2,27 @@
   <a href="/" class="color-effect logo">gibjohn</a>
   <ul class="nav-links">
     <li>
-      <a
-        href="{{url_for('index')}}"
-        class="secondary-button-2{% if active_page == url_for('index') %} active{% endif %}"
-        >Home</a
-      >
+      <a href="{{url_for('index')}}"
+        class="secondary-button 2{% if active_page == url_for('index') %} active{% endif %}">Home</a>
     </li>
     <li>
-      <a
-        href="{{url_for('courses')}}"
-        class="secondary-button-2{% if active_page == '/courses' %} active{% endif %}"
-        >Courses</a
-      >
+      <a href="{{url_for('courses')}}"
+        class="secondary-button 2{% if active_page == '/courses' %} active{% endif %}">Courses</a>
     </li>
     <li>
-      <a
-        href="{{url_for('tutors')}}"
-        class="secondary-button-2{% if active_page == '/tutors' %} active{% endif %}"
-        >Tutors</a
-      >
+      <a href="{{url_for('tutors')}}"
+        class="secondary-button 2{% if active_page == '/tutors' %} active{% endif %}">Tutors</a>
     </li>
   </ul>
   <div class="main-buttons">
-    <a {% if active_page == '/login' %}class="active"{% endif %} href="{{url_for('login')}}" class="user"
-      ><i class="fa-solid fa-user"></i>Sign In</a
-    >
-    <a {% if active_page == '/register' %}class="active"{% endif %} href="{{url_for('register')}}">Register</a>
+    {% if user.is_authenticated %}
+    <a href="#" class="user logged-in">{{user.username}}</a>
+    {% else %}
+    <a class="user{% if active_page == '/login' %} active{% endif %}" href="{{url_for('login')}}"><i
+        class="fa-solid fa-user"></i>Sign In</a>
+    <a {% if active_page=='/register' %}class="active" {% endif %} href="{{url_for('register')}}">Register</a>
+    <i class="fa-solid fa-bars" id="menu-icon"></i>
+    {% endif %}
     <i class="fa-solid fa-bars" id="menu-icon"></i>
   </div>
 </header>

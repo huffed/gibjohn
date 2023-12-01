@@ -78,7 +78,8 @@ body {
 // BUTTONS
 li,
 a,
-button {
+button,
+input {
   font-family: @base-font-family;
   font-weight: @base-medium-font-weight;
   font-size: @base-button-large-font-size;
@@ -90,45 +91,58 @@ button {
 button {
   margin-left: 1.25rem;
   padding: 0.6rem 1.6rem;
-  background-color: @base-color-accent;
+  background-color: @base-color-primary;
   border: none;
   border-radius: 3.1rem;
   cursor: pointer;
   color: @base-color-white;
 }
 
-.primary-button {
-  transition: @base-transition;
+a,
+button,
+input {
+  // <button> button
+  &.primary-button {
+    padding: 0.5rem 2rem;
+    background-color: @base-color-primary;
+    cursor: pointer;
+    color: @base-color-white;
+    border-radius: 0.4rem;
+    display: inline-block;
+    font-size: @base-body-font-size;
+    white-space: nowrap;
+    transition: @base-transition;
 
-  &:hover {
-    transform: translate(0, -0.2rem);
-    box-shadow: 0 0.6rem 3.1rem -0.6rem @base-color-accent;
+    &:hover {
+      transform: translate(0, -0.2rem);
+      box-shadow: 0 0.6rem 3.1rem -0.6rem @base-color-primary;
+    }
   }
-}
 
-.secondary-button {
-  background-color: @base-color-secondary;
-  cursor: pointer;
-  border: none;
-  border-radius: 3.1rem;
-  padding: 0.6rem 1.25rem;
-  transition: @base-transition;
+  // <a> button
+  &.secondary-button {
+    background-color: @base-color-secondary;
+    cursor: pointer;
+    border: none;
+    border-radius: 3.1rem;
+    padding: 0.6rem 1.25rem;
+    transition: @base-transition;
 
-  &:hover {
-    transform: translate(0, -0.2rem);
-    transition: transform ease 0.2s;
-  }
-}
+    &:hover {
+      transform: translate(0, -0.2rem);
+      transition: transform ease 0.2s;
+    }
 
-.secondary-button-2 {
-  cursor: pointer;
-  border: none;
-  padding: 0.6rem;
-  transition: transform ease 0.2s;
+    &.\32 {
+      background-color: transparent;
+      padding: 0.6rem;
+      transition: transform ease 0.2s;
 
-  &.active {
-    color: @base-color-accent;
-    font-weight: @base-bold-font-weight;
+      &.active {
+        color: @base-color-primary;
+        font-weight: @base-bold-font-weight;
+      }
+    }
   }
 }
 
@@ -160,7 +174,7 @@ header {
       transition: @base-transition;
 
       &:hover {
-        color: @base-color-accent;
+        color: @base-color-primary;
       }
     }
   }
@@ -175,12 +189,18 @@ header {
       transition: @base-transition;
 
       &.active {
-        color: @base-color-accent;
+        color: @base-color-primary;
         font-weight: @base-bold-font-weight;
       }
 
       &:hover {
-        color: @base-color-accent;
+        color: @base-color-primary;
+      }
+
+      &.logged-in {
+        &:hover {
+          color: @base-color-black;
+        }
       }
     }
 
@@ -189,7 +209,7 @@ header {
       align-items: center;
 
       i {
-        color: @base-color-accent;
+        color: @base-color-primary;
         font-size: 1.2rem;
         margin-right: 0.6rem;
       }
@@ -208,33 +228,39 @@ header {
 main {
   width: 100%;
 
-  // REGISTER PAGE
-  .register {
+  // REGISTER AND LOGIN PAGE
+  .register,
+  .login {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    width: 100%;
+    height: 75vh;
 
-    .register-container {
+    .register-container,
+    .login-container {
       position: relative;
       width: 25rem;
       height: 28.125rem;
-      background-color: @base-color-accent;
+      background: transparent;
+      border: 0.125rem solid rgba(0, 0, 0, 0.5);
       border-radius: 1.25rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      backdrop-filter: blur(1rem);
 
       h2 {
         font-size: @base-h4-font-size;
-        color: @base-color-white;
+        color: @base-color-black;
+        text-align: center;
       }
 
       .input-box {
         position: relative;
         width: 19.375rem;
         margin: 1.875rem 0;
-        border-bottom: 0.125rem solid @base-color-white;
+        border-bottom: 0.125rem solid rgba(0, 0, 0, 0.5);
 
         label {
           position: absolute;
@@ -242,7 +268,7 @@ main {
           left: 0.3rem;
           transform: translateY(-50%);
           font-size: @base-body-font-size;
-          color: @base-color-white;
+          color: @base-color-black;
           pointer-events: none;
           transition: @base-transition;
         }
@@ -254,29 +280,95 @@ main {
           border: none;
           outline: none;
           font-size: @base-body-font-size;
-          color: @base-color-white;
-          padding: 0 2.2rem 0 0.5rem;
+          color: @base-color-black;
+          padding: 0 4.5rem 0 0.5rem;
 
-          &:focus ~ label,
-          &:valid ~ label {
-            top: -0.3rem;
+          &#password {
+            &:focus,
+            &:not(:placeholder-shown) + #togglePassword {
+              display: inline-block;
+            }
           }
 
-          &[type="password"]:focus::-ms-reveal {
-            display: block;
-            -webkit-filter: invert(100%);
-            filter: invert(100%);
+          &::-ms-reveal {
+            display: none;
+          }
+
+          &:focus ~ label,
+          &:not(:placeholder-shown) ~ label {
+            top: -0.5rem;
           }
         }
 
         i {
           position: absolute;
           right: 0.5rem;
-          color: @base-color-white;
+          color: @base-color-accent;
           font-size: @base-h6-font-size;
           line-height: 3.3rem;
+
+          &#togglePassword {
+            right: 2.4rem;
+            cursor: pointer;
+            display: none;
+          }
         }
       }
+
+      a {
+        color: @base-color-primary;
+        font-weight: 600;
+        transition: @base-transition;
+
+        &:hover {
+          opacity: 70%;
+        }
+      }
+
+      .remember-forgot {
+        margin-top: -1rem;
+        font-size: @base-body-font-size;
+        color: @base-color-black;
+        display: flex;
+        justify-content: space-between;
+
+        input {
+          margin-right: 0.2rem;
+          accent-color: @base-color-primary;
+        }
+
+        a {
+          font-weight: 500;
+        }
+      }
+
+      .primary-button {
+        width: 100%;
+        height: 2.5rem;
+        background: @base-color-primary;
+        border: none;
+        outline: none;
+        border-radius: 2.5rem;
+        color: @base-color-white;
+        font-weight: 500;
+        background: @base-text-gradient;
+
+        &:hover {
+          box-shadow: 0 0.6rem 2rem -1rem @base-color-primary;
+        }
+      }
+
+      .login-link,
+      .register-link {
+        font-size: @base-body-font-size;
+        color: @base-color-black;
+        text-align: center;
+        margin: 1.6rem 0 0.625rem;
+      }
+    }
+
+    .login-container .primary-button {
+      margin-top: 1.5rem;
     }
   }
 
@@ -326,7 +418,7 @@ main {
         align-items: center;
         justify-content: center;
         font-size: @base-h3-font-size;
-        color: @base-color-accent;
+        color: @base-color-primary;
         opacity: 0;
         transition: all 500ms ease;
         transition-delay: 1000ms;
@@ -377,7 +469,7 @@ main {
     }
 
     .bug {
-      background: @base-color-accent;
+      background: @base-color-primary;
       transition: transform 4000ms ease;
       width: 2.25vw;
       height: 2.5vw;
@@ -393,7 +485,7 @@ main {
         position: absolute;
         top: 0;
         left: 0.375vw;
-        background: @base-color-accent;
+        background: @base-color-primary;
         border-radius: 100%;
         z-index: -1;
         transition: all 1000ms ease;
@@ -413,8 +505,8 @@ main {
             linear-gradient(
               transparent,
               transparent 45%,
-              @base-color-accent 45%,
-              @base-color-accent 55%,
+              @base-color-primary 45%,
+              @base-color-primary 55%,
               transparent 55%
             ),
           top left/100% 100%
@@ -422,8 +514,8 @@ main {
               to bottom right,
               transparent,
               transparent 45%,
-              @base-color-accent 45%,
-              @base-color-accent 55%,
+              @base-color-primary 45%,
+              @base-color-primary 55%,
               transparent 55%
             ),
           top left/100% 100%
@@ -431,8 +523,8 @@ main {
               to bottom left,
               transparent,
               transparent 45%,
-              @base-color-accent 45%,
-              @base-color-accent 55%,
+              @base-color-primary 45%,
+              @base-color-primary 55%,
               transparent 55%
             );
       }
@@ -464,7 +556,7 @@ main {
     right: -100%;
     width: 17rem;
     height: 29vh;
-    background: @base-color-accent;
+    background: @base-color-primary;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -479,7 +571,7 @@ main {
       color: @base-color-white;
 
       &:hover {
-        color: @base-color-accent;
+        color: @base-color-primary;
         transform: translateY(0.3rem);
       }
 
@@ -490,6 +582,26 @@ main {
 
     &.open {
       right: 2%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main .error .error-code:after {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  main {
+    .register,
+    .login {
+      .register-container,
+      .login-container {
+        width: 100%;
+        height: 100vh;
+        border: none;
+      }
     }
   }
 }

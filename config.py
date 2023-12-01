@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging.handlers import RotatingFileHandler
 import os
+from flask_wtf.csrf import CSRFProtect
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -18,7 +19,8 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = sqlite_db_path
-    app.config["SECRET_KEY"] = "havoc3141"
+    app.config["SECRET_KEY"] = "gibjohn123"
+    csrf = CSRFProtect(app)
 
     argon2.init_app(app)
     lessc(app)

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}{% block title_extension %} - {{form_type|title}}{% endblock %} {%
+block content %}
+{% include 'header.html' %}
+
+<div class="{{form_type}}">
+    <div class="{{form_type}}-container">
+        <form action="" method="post">
+            {{form.csrf_token}}
+            <h2>{{form_type|title}}</h2>
+            <div class="input-box">
+                <i class="fa-solid fa-at"></i>
+                {{form.username}}
+                <label>Username</label>
+            </div>
+            <div class="input-box">
+                <i class="fa-solid fa-lock"></i>
+                {{form.password}}
+                <i class="fa-regular fa-eye-slash" id="togglePassword"></i>
+                <label>Password</label>
+            </div>
+            {% if form_type == 'register' %}
+            <div class="input-box">
+                <i class="fa-solid fa-lock"></i>
+                {{form.confirm}}
+                <label>Confirm Password</label>
+            </div>
+            {% endif %}
+            {%if form_type == "login"%}
+            <div class="remember-forgot">
+                <label>{{form.remember}} Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            {%endif%}
+            {{form.submit(value="Login" if form_type=="login" else "Sign up", class="primary-button")}}
+            <div class="login-link">
+                {% if form_type=="register" %}
+                <p>Already have an account? <a href="{{url_for('login')}}">Login</a></p>
+                {% else %}
+                <p>Don't have an account? <a href="{{url_for('register')}}">Sign up</a></p>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var togglePassword = document.getElementById('togglePassword');
+        var passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.classList.remove('fa-eye-slash')
+                togglePassword.classList.add('fa-eye')
+                togglePassword.style.paddingRight = "2.35px"
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.classList.remove('fa-eye')
+                togglePassword.classList.add('fa-eye-slash')
+                togglePassword.style.paddingRight = ""
+            }
+        });
+    });
+</script>
+{% endblock %}

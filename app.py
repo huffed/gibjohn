@@ -20,6 +20,11 @@ def load_user(user_id):
         return User(uid=uid, username=username, password=password)
 
 
+@app.context_processor
+def context_processor():
+    return dict(user=current_user)
+
+
 @app.route("/")
 def index():
     return render_template("index.html", active_page=request.path)
@@ -33,12 +38,16 @@ def register():
         hashed_password = argon2.generate_password_hash(form.password.data)
         query = text(
             "INSERT INTO users (username, password) VALUES (:username, :password)")
-        db.session.execute(
-            query, {"username": form.username.data, "password": hashed_password})
-        db.session.commit()
-        return redirect(url_for('login'))
+        try:
+            db.session.execute(
+                query, {"username": form.username.data, "password": hashed_password})
+            db.session.commit()
+            return redirect(url_for('login'))
+        except Exception as error:
+            db.session.rollback()
+            raise error
 
-    return render_template("register.html", form=form, active_page=request.path)
+    return render_template("register-login.html", form=form, active_page=request.path, form_type=request.path.strip("/"))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -55,9 +64,9 @@ def login():
                        password=user.password))
             return redirect(url_for("dashboard"))
         else:
-            return render_template("login.html", form=form)
+            return render_template("register-login.html", form=form, active_page=request.path, form_type=request.path.strip("/"))
 
-    return render_template("login.html", form=form, active_page=request.path)
+    return render_template("register-login.html", form=form, active_page=request.path, form_type=request.path.strip("/"))
 
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -99,7 +108,10 @@ def dashboard():
 @app.errorhandler(Exception)
 def handle_exception(error):
     error_message = "Looks like you found a bug."
-    return render_template('error.html', error_code=error.code, error_message=error_message, active_page=request.path), error.code
+    try:
+        return render_template('error.html', error_code=error.code, error_message=error_message, active_page=request.path), error.code
+    except:
+        return render_template('error.html', error_code=500, error_message=error_message, active_page=request.path), "500"
 
 
 @app.errorhandler(404)
