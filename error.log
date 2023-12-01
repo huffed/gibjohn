@@ -1423,3 +1423,63 @@ Traceback (most recent call last):
   File "C:\Users\336658\AppData\Roaming\Python\Python311\site-packages\flask\app.py", line 1801, in make_response
     raise TypeError(
 TypeError: The view function for 'courses' did not return a valid response. The function either returned None or ended without a return statement.
+
+2023-12-01 11:03:09,081 - app - ERROR - Exception on /courses [GET]
+Traceback (most recent call last):
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1487, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1506, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'courses' did not return a valid response. The function either returned None or ended without a return statement.
+
+2023-12-01 11:03:14,912 - app - ERROR - Exception on /courses [GET]
+Traceback (most recent call last):
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1487, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1506, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'courses' did not return a valid response. The function either returned None or ended without a return statement.
+
+2023-12-01 11:07:48,011 - app - ERROR - Exception on /courses [GET]
+Traceback (most recent call last):
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1487, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1506, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'courses' did not return a valid response. The function either returned None or ended without a return statement.
+
+2023-12-01 11:24:23,392 - config - ERROR - Exception on /courses [GET]
+Traceback (most recent call last):
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1487, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1506, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\336658\AppData\Roaming\Python\Python312\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'courses' did not return a valid response. The function either returned None or ended without a return statement.

@@ -1,53 +1,12 @@
 from forms.user_forms import RegisterForm, LoginForm
 from models.user import User
-from flask import Flask, render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request
 from sqlalchemy import text
-from flask_login import login_user, LoginManager, login_required, current_user, logout_user
-from config import db, sqlite_db_path
+from flask_login import login_user, login_required, current_user, logout_user
+from config import create_app
 from extensions import argon2
-from flask_limiter import Limiter
-from flask_less import lessc
-import logging
-from logging.handlers import RotatingFileHandler
 
-app = Flask(__name__)
-
-
-argon2.init_app(app)
-
-
-app.config["SQLALCHEMY_DATABASE_URI"] = sqlite_db_path
-app.config["SECRET_KEY"] = "havoc3141"
-
-
-lessc(app)
-
-
-db.init_app(app)
-
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "login"
-
-
-limiter = Limiter(
-    app=app,
-    key_func=lambda: request.remote_addr,
-    storage_uri="memory://"
-)
-
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-app.logger.handlers.clear()
-file_handler = RotatingFileHandler(
-    'error.log', maxBytes=1024 * 1024 * 10, backupCount=10)
-file_handler.setLevel(logging.ERROR)
-formatter = logging.Formatter(
-    '\n%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
+app, db, login_manager, limiter, logger = create_app()
 
 
 @login_manager.user_loader
