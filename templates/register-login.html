@@ -7,6 +7,22 @@ block content %}
         <form action="" method="post">
             {{form.csrf_token}}
             <h2>{{form_type|title}}</h2>
+            <ul class="errors">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% if form.errors %}
+                {% for field, errors in form.errors.items() %}
+                {% for error in errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+                {% endfor %}
+                {% endif %}
+            </ul>
             <div class="input-box">
                 <i class="fa-solid fa-at"></i>
                 {{form.username}}
@@ -45,22 +61,18 @@ block content %}
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var togglePassword = document.getElementById('togglePassword');
-        var passwordInput = document.getElementById('password');
-        
-        togglePassword.addEventListener('click', function () {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                togglePassword.classList.remove('fa-eye-slash')
-                togglePassword.classList.add('fa-eye')
-                togglePassword.style.paddingRight = "2.35px"
-            } else {
-                passwordInput.type = 'password';
-                togglePassword.classList.remove('fa-eye')
-                togglePassword.classList.add('fa-eye-slash')
-                togglePassword.style.paddingRight = ""
-            }
+    $(document).ready(function () {
+        $('#togglePassword').click(function () {
+            const passwordInput = $('#password');
+            const isPassword = passwordInput.attr('type') === 'password';
+
+            passwordInput.attr('type', isPassword ? 'text' : 'password');
+            $('#togglePassword').toggleClass('fa-eye-slash fa-eye');
+            $('#togglePassword').css('padding-right', isPassword ? '2.35px' : '');
+        });
+
+        $('.input-box').on('input', function () {
+            $('.errors').css('display', 'none');
         });
     });
 </script>

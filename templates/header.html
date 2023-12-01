@@ -21,7 +21,6 @@
     <a class="user{% if active_page == '/login' %} active{% endif %}" href="{{url_for('login')}}"><i
         class="fa-solid fa-user"></i>Sign In</a>
     <a {% if active_page=='/register' %}class="active" {% endif %} href="{{url_for('register')}}">Register</a>
-    <i class="fa-solid fa-bars" id="menu-icon"></i>
     {% endif %}
     <i class="fa-solid fa-bars" id="menu-icon"></i>
   </div>

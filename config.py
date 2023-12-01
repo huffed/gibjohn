@@ -29,6 +29,7 @@ def create_app():
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = "login"
+    login_manager.login_message = "Please log in to access this page."
 
     limiter = Limiter(
         app=app, key_func=lambda: request.remote_addr, storage_uri="memory://")

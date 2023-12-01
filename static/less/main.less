@@ -250,10 +250,27 @@ main {
       align-items: center;
       backdrop-filter: blur(1rem);
 
+      .errors {
+        all: revert;
+        position: absolute;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 0;
+        padding-left: 0;
+        top: 5rem;
+
+        li {
+          color: @base-color-red;
+        }
+      }
+
       h2 {
         font-size: @base-h4-font-size;
         color: @base-color-black;
         text-align: center;
+        margin-bottom: 20%;
       }
 
       .input-box {

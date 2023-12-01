@@ -77,6 +77,7 @@ def logout():
 
 
 @app.route('/courses')
+@login_required
 def courses():
     pass
 
