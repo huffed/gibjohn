@@ -45,4 +45,4 @@ def create_app():
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
-    return app, db, login_manager, limiter, logger
+    return app, db, login_manager, limiter, logger, csrf

@@ -6,7 +6,7 @@ from flask_login import login_user, login_required, current_user, logout_user
 from config import create_app
 from extensions import argon2
 
-app, db, login_manager, limiter, logger = create_app()
+app, db, login_manager, limiter, logger, csrf = create_app()
 
 
 @login_manager.user_loader
@@ -61,7 +61,7 @@ def login():
 
         if user and argon2.check_password_hash(user.password, form.password.data):
             login_user(User(uid=user.uid, username=user.username,
-                       password=user.password))
+                       password=user.password), remember=form.remember.data)
             return redirect(url_for("dashboard"))
         else:
             return render_template("register-login.html", form=form, form_type=request.path.strip("/"))
