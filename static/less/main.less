@@ -2,6 +2,7 @@
 @import url("styles.less");
 // https://www.realtimecolors.com/?colors=010403-ffffff-247b7b-c4d9ee-34b273&fonts=Poppins-Poppins
 
+// TODO: for user on header design look at the sidebar of this: https://www.realtimecolors.com/dashboard?colors=010403-ffffff-247b7b-c4d9ee-34b273&fonts=Poppins-Poppins
 // TODO: add dark mode
 // TODO: add login: https://www.youtube.com/watch?v=H8ThscWsQV8
 
@@ -121,7 +122,7 @@ input {
 
   // <a> button
   &.secondary-button {
-    background-color: @base-color-secondary;
+    background-color: @base-color-white;
     cursor: pointer;
     border: none;
     border-radius: 3.1rem;
@@ -212,6 +213,24 @@ header {
         color: @base-color-primary;
         font-size: 1.2rem;
         margin-right: 0.6rem;
+      }
+    }
+
+    .profile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid;
+      border-radius: 0.4rem;
+      padding: 0.5rem;
+      margin-right: 1.6rem;
+
+      a {
+        margin-right: 0;
+      }
+
+      i {
+        color: @base-color-primary;
       }
     }
   }
@@ -572,37 +591,36 @@ main {
   }
 
   header .nav-links {
+    background-color: @base-color-white;
     position: absolute;
     top: 100%;
     right: -100%;
-    width: 17rem;
-    height: 29vh;
-    background: @base-color-primary;
+    width: 11rem;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     border-radius: 0.625rem;
     transition: @base-transition;
+    border: 0.1rem solid;
+    border-color: rgba(0, 0, 0, 0.5);
 
     a {
       display: block;
       margin: 0.75rem 0;
       padding: 0 1.6rem;
       transition: @base-transition;
-      color: @base-color-white;
+      color: @base-color-black;
 
       &:hover {
         color: @base-color-primary;
         transform: translateY(0.3rem);
       }
-
-      &.active {
-        color: @base-color-white;
-      }
     }
 
     &.open {
       right: 2%;
+      // TODO: make the sidebar like twitter's sidebar
     }
   }
 }

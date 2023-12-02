@@ -16,7 +16,10 @@
   </ul>
   <div class="main-buttons">
     {% if user.is_authenticated %}
-    <a href="#" class="user logged-in">{{user.username}}</a>
+    <div class="profile">
+      <i class="fa-regular fa-user"></i>
+      <a href="#" class="user logged-in">{{user.username}}</a>
+    </div>
     {% else %}
     <a class="user{% if active_page == '/login' %} active{% endif %}" href="{{url_for('login')}}"><i
         class="fa-solid fa-user"></i>Sign In</a>
