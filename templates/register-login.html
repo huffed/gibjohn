@@ -1,6 +1,7 @@
-{% extends 'base.html' %}{% block title_extension %} - {{form_type|title}}{% endblock %} {%
-block content %}
+{% extends 'base.html' %}{% block title_extension %} - {{form_type|title}}{% endblock %} {% block preface_body %}
 {% include 'header.html' %}
+{% endblock %}{%
+block content %}
 
 <div class="{{form_type}}">
     <div class="{{form_type}}-container" {% if form_type=='register' %} style="height: 32rem" {% endif %}>
@@ -75,32 +76,13 @@ block content %}
             const isPassword = passwordInput.attr('type') === 'password';
 
             passwordInput.attr('type', isPassword ? 'text' : 'password');
-            $(this).toggleClass('fa-eye-slash fa-eye').css('padding-right', isPassword ? '2.35px' : '');
+            $(this).toggleClass('fa-eye-slash fa-eye').css('padding-right', isPassword ? '1.4px' : '');
         });
 
         // This removes the error message when you start typing
         $('.input-box').on('input', function () {
             $('.errors').hide();
         });
-
-        // This moves the error message to the correct height on page load
-        var $usernameInput = $('#username');
-
-        function updateErrorMessagePosition() {
-            adjustErrorMessagePosition($usernameInput.val().trim() !== '' ? 4 : 5);
-        }
-
-        $usernameInput.on('input', updateErrorMessagePosition);
-        updateErrorMessagePosition();
-
-        function adjustErrorMessagePosition(topValue) {
-            const greatGrandparentClass = $('.errors').parent().parent().parent().attr('class');
-            if (greatGrandparentClass && greatGrandparentClass.includes('register')) {
-                topValue = 2.5;
-            }
-
-            $('.errors').css('top', topValue + 'rem');
-        }
     });
 </script>
 
