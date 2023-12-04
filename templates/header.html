@@ -16,9 +16,17 @@
   </ul>
   <div class="main-buttons">
     {% if user.is_authenticated %}
-    <div class="profile">
-      <i class="fa-regular fa-user"></i>
-      <a href="#" class="user logged-in">{{user.username}}</a>
+    <div class="profile-container">
+      <div class="profile">
+        <i class="fa-regular fa-user"></i>
+        <div class="user logged-in">{{user.username}}</div>
+      </div>
+      <ul class="links">
+        <li>
+          <a href="{{url_for('logout')}}"
+            class="secondary-button 2{% if active_page == url_for('logout') %} active{% endif %}">Logout</a>
+        </li>
+      </ul>
     </div>
     {% else %}
     <a class="user{% if active_page == '/login' %} active{% endif %}" href="{{url_for('login')}}"><i
@@ -30,13 +38,22 @@
 </header>
 
 <script>
-  let menu = document.querySelector("#menu-icon");
-  let dropDownMenu = document.querySelector(".nav-links");
+  $("#menu-icon").click(function () {
+    $(".nav-links").toggleClass("open");
+    const isOpen = $(".nav-links").hasClass("open");
 
-  menu.onclick = () => {
-    dropDownMenu.classList.toggle("open");
-    const isOpen = dropDownMenu.classList.contains("open");
+    $("#menu-icon").attr('class', isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars");
+  });
 
-    menu.classList = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
-  };
+  $(".profile").click(function () {
+    $(".nav-links").removeClass("open");
+    const currentDisplay = $(this).css("display");
+    if (currentDisplay === "none") {
+      $(this).css("display", "flex");
+    } else {
+      $(this).css("display", "none");
+    }
+
+    // TODO: FIX THIS BOLLOCKS
+  });
 </script>

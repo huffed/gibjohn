@@ -234,21 +234,58 @@ header {
       }
     }
 
-    .profile {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid;
-      border-radius: 0.4rem;
-      padding: 0.5rem;
-      margin-right: 1.6rem;
+    .profile-container {
+      .profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid;
+        border-radius: 0.4rem;
+        padding: 0.5rem;
+        margin-right: 2.5625rem;
+        transition: @base-transition;
+        cursor: pointer;
 
-      a {
-        margin-right: 0;
+        .user {
+          font-weight: 500;
+          user-select: none;
+        }
+
+        i {
+          color: @base-color-accent;
+          margin-right: 0.6rem;
+        }
+
+        &:hover {
+          color: @base-color-accent;
+        }
       }
 
-      i {
-        color: @base-color-accent;
+      .links {
+        right: -100%;
+        background-color: @base-color-white;
+        position: absolute;
+        top: 100%;
+        left: auto;
+        transform: none;
+        width: 11rem;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 0.625rem;
+        transition: all 0.3s ease 0s;
+        border: 0.1rem solid;
+        border-color: rgba(0, 0, 0, 0.5);
+
+        a {
+          display: block;
+          margin: 0.75rem 0;
+
+          &:hover {
+            transform: none;
+          }
+        }
       }
     }
   }
@@ -259,6 +296,11 @@ header {
     z-index: 10001;
     display: none;
     pointer-events: all;
+    transition: all, 0.2s;
+
+    &:hover {
+      color: @base-color-accent;
+    }
   }
 }
 
@@ -468,6 +510,7 @@ main {
       border-radius: 1vw;
       transition: all 250ms ease;
       will-change: transform;
+      cursor: revert;
 
       @keyframes skitter {
         0%,
@@ -617,7 +660,8 @@ main {
       display: block;
     }
 
-    .nav-links {
+    .nav-links,
+    .profile-container.links {
       background-color: @base-color-white;
       position: absolute;
       top: 100%;
@@ -649,7 +693,6 @@ main {
 
       &.open {
         right: 2%;
-        // TODO: make the sidebar like twitter's sidebar
       }
     }
   }
