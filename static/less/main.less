@@ -325,6 +325,17 @@ main {
   // INDEX PAGE
   .primary-content {
     padding: 0 1.25rem 2.5rem 1.25rem;
+
+    .main-search .main-search-container {
+      width: 100%;
+      max-width: 63rem;
+      margin: 0 auto;
+
+      .main-search-tool h2 {
+        max-width: 34rem;
+        text-align: center;
+      }
+    }
   }
 
   // REGISTER AND LOGIN PAGE
@@ -530,6 +541,7 @@ main {
         100% {
           transform: rotate(-35deg);
         }
+
         50% {
           transform: rotate(35deg);
         }
@@ -557,10 +569,11 @@ main {
       }
 
       // HOVER ANIMATIONS
-      .generate-hover-animations(@i: 1) when (@i <= 24) {
+      .generate-hover-animations(@i: 1) when (@i <=24) {
         &:hover .cell.filled:nth-child(@{i}) {
           transform: rotate(15deg * @i);
         }
+
         .generate-hover-animations(@i + 1);
       }
 
@@ -569,12 +582,15 @@ main {
       &:hover .number {
         grid-gap: 2vw;
       }
+
       &:hover .bug {
         transform: translateY(-200vh);
         transition-delay: 500ms;
+
         &:before {
           top: -0.5vw;
         }
+
         &:after {
           left: -0.75vw;
           right: -0.75vw;

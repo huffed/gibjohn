@@ -46,14 +46,11 @@
   });
 
   $(".profile").click(function () {
-    $(".nav-links").removeClass("open");
-    const currentDisplay = $(this).css("display");
-    if (currentDisplay === "none") {
-      $(this).css("display", "flex");
-    } else {
-      $(this).css("display", "none");
+    console.log("clicked")
+    const isOpen = $(".nav-links").hasClass("open");
+    if (isOpen !== "none") {
+      $(".nav-links").removeClass("open");
+      $("#menu-icon").attr('class', isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars")
     }
-
-    // TODO: FIX THIS BOLLOCKS
   });
 </script>
