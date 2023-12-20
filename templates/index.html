@@ -6,7 +6,20 @@ block content %}
     <div class="main-search">
         <div class="main-search-container">
             <div class="main-search-tool">
-                <h2>Find the perfect tutor!</h2>
+                <h2>Find the<br>perfect tutor!</h2>
+                <div class="mobile-style-container">
+                    <div class="search"><!-- FORM GOES HERE --></div>
+                    <div class="search-quick">
+                        <ul>
+                            {% for course, img in form.errors.items() %}
+                            <li data-search="{{course}}">
+                                <img src="img" alt="subject icon">
+                                <span class="name">{{course}}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

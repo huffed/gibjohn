@@ -43,6 +43,7 @@
     const isOpen = $(".nav-links").hasClass("open");
 
     $("#menu-icon").attr('class', isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars");
+    $(".profile-container .links").removeClass("open");
   });
 
   $(".profile").click(function () {
@@ -50,7 +51,8 @@
     const isOpen = $(".nav-links").hasClass("open");
     if (isOpen !== "none") {
       $(".nav-links").removeClass("open");
-      $("#menu-icon").attr('class', isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars")
+      $("#menu-icon").removeClass().addClass("fa-solid fa-bars");
     }
+    $(".profile-container .links").toggleClass("open");
   });
 </script>
