@@ -52,66 +52,70 @@ block content %}
 
 <script>
     // Clear text box with clear text button
-    $('.clear-button').on('click', function () {
-        $('#courses').val('')
-    });
+    $(document).ready(function () {
+        $('.clear-button').on('click', function () {
+            $('#course').val('')
+        });
 
-    // Show the first 10 courses when the text input box is active
-    $('#course').focus(function () {
-        var courses = $(this).parent().children('.course-choices-dropdown').children('div');
-        for (var i = 0; i < 10; i++) {
-            courses.eq(i).show();
-        }
-    });
 
-    // Show the dropdown when the text input box is active or cleared
-    $('#course').on('focus keyup', function () {
-        var typedLetters = this.value;
-        var courses = $(this).parent().children('.course-choices-dropdown').children('div');
-        var dropdown = $(this).parent().children('.course-choices-dropdown');
-
-        // If the input field is cleared, show all options
-        if (typedLetters === '') {
-            courses.each(function () {
-                $(this).show();
-                var instance = new Mark(this);
-                instance.unmark();
-            });
-            dropdown.show();
-        }
-    });
-
-    // Search and highlight the typed letters
-    $('#course').on('input', function () {
-        var typedLetters = this.value;
-        var courses = $(this).parent().children('.course-choices-dropdown').children('div');
-        var dropdown = $(this).parent().children('.course-choices-dropdown');
-
-        courses.each(function () {
-            var course = $(this).text();
-            if (course.toLowerCase().startsWith(typedLetters.toLowerCase())) {
-                $(this).show();
-                var instance = new Mark(this);
-                instance.unmark();
-                instance.mark(typedLetters, { element: 'span', className: 'highlight' });
-            } else {
-                $(this).hide();
-                var instance = new Mark(this);
-                instance.unmark();
+        // Show the first 10 courses when the text input box is active
+        $('#course').focus(function () {
+            var courses = $(this).parent().children('.course-choices-dropdown').children('div');
+            for (var i = 0; i < 10; i++) {
+                courses.eq(i).show();
             }
         });
 
-        // If there are no visible options, hide the dropdown
-        if (!dropdown.children('div:visible').length) {
-            dropdown.hide();
-        }
-    });
+        // Show the dropdown when the text input box is active or cleared
+        $('#course').on('focus keyup', function () {
+            var typedLetters = this.value;
+            var courses = $(this).parent().children('.course-choices-dropdown').children('div');
+            var dropdown = $(this).parent().children('.course-choices-dropdown');
 
-    // Click on the suggested items in the dropdown
-    $(document).on('click', '.course-choices-dropdown div:nth-child(n)', function () {
-        console.log(this)
-        $('#course').val($(this).text());
-        $(this).parent().hide();
+            // If the input field is cleared, show all options
+            if (typedLetters === '') {
+                courses.each(function () {
+                    $(this).show();
+                    var instance = new Mark(this);
+                    instance.unmark();
+                });
+                dropdown.show();
+            }
+        });
+
+        // Search and highlight the typed letters
+        $('#course').on('input', function () {
+            var typedLetters = this.value;
+            var courses = $(this).parent().children('.course-choices-dropdown').children('div');
+            var dropdown = $(this).parent().children('.course-choices-dropdown');
+
+            courses.each(function () {
+                var course = $(this).text();
+                if (course.toLowerCase().startsWith(typedLetters.toLowerCase())) {
+                    $(this).show();
+                    var instance = new Mark(this);
+                    instance.unmark();
+                    instance.mark(typedLetters, { element: 'span', className: 'highlight' });
+                } else {
+                    $(this).hide();
+                    var instance = new Mark(this);
+                    instance.unmark();
+                }
+            });
+
+            // If there are no visible options, hide the dropdown
+            if (!dropdown.children('div:visible').length) {
+                dropdown.hide();
+            }
+        });
+
+        // Click on the suggested items in the dropdown
+        $('.course-choices-dropdown').on('click', 'div', function () {
+            console.log("2")
+            var clickedDivText = $(this).text();
+            $('#course').val(clickedDivText);
+            $(this).parent().hide();
+        });
     });
 </script>
 {% endblock %}
