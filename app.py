@@ -1,5 +1,7 @@
 from forms.user_forms import RegisterForm, LoginForm
+from forms.course_forms import CourseSearch
 from models.user import User
+from models.courses import Courses
 from flask import render_template, url_for, redirect, request
 from sqlalchemy import text
 from flask_login import login_user, login_required, current_user, logout_user
@@ -7,6 +9,9 @@ from config import create_app
 from extensions import argon2
 
 app, db, login_manager, limiter, logger, csrf = create_app()
+
+with app.app_context():
+    db.create_all()
 
 
 @login_manager.user_loader
@@ -25,9 +30,16 @@ def context_processor():
     return dict(user=current_user, active_page=request.path)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    form = CourseSearch()
+
+    query = text(
+        "SELECT name, icon, icon_type FROM courses")
+    courses = db.session.execute(query).fetchall()
+
+    course_to_try = courses[0][0]
+    return render_template("index.html", courses=courses, form=form, course_to_try=course_to_try)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -62,7 +74,10 @@ def login():
         if user and argon2.check_password_hash(user.password, form.password.data):
             login_user(User(uid=user.uid, username=user.username,
                        password=user.password), remember=form.remember.data)
-            return redirect(url_for("dashboard"))
+            try:
+                return redirect(url_for(request.args['next'].strip("/")))
+            except:
+                return redirect(url_for("index"))
         else:
             return render_template("register-login.html", form=form, form_type=request.path.strip("/"))
 
@@ -127,6 +142,4 @@ def ratelimit_error(e):
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)

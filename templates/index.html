@@ -7,21 +7,111 @@ block content %}
         <div class="main-search-container">
             <div class="main-search-tool">
                 <h2>Find the<br>perfect tutor!</h2>
+                {% if courses %}
+                {% if courses|length >= 3 %}
                 <div class="mobile-style-container">
-                    <div class="search"><!-- FORM GOES HERE --></div>
+                    <div class="search">
+                        <form action="" method="post" class="course-search-box">
+                            <div class="form-container">
+                                {{form.csrf_token}}
+                                <div class="search-course">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    {{ form.course(placeholder='Try "' ~ course_to_try ~ '"') }}
+                                    <div class="clear-button">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </div>
+                                    <div class="course-choices-dropdown">
+                                        {% for course, icon, icon_type in courses %}
+                                        <div>{{course}}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {{form.submit(class="primary-button")}}
+                            </div>
+                        </form>
+                    </div>
                     <div class="search-quick">
                         <ul>
-                            {% for course, img in form.errors.items() %}
+                            {% for course, icon, icon_type in courses %}
                             <li data-search="{{course}}">
-                                <img src="img" alt="subject icon">
+                                <i class="fa-{{icon_type}} fa-{{icon}}"></i>
                                 <span class="name">{{course}}</span>
                             </li>
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
+                {% endif %}
+                {% else %}
+                <h4>No courses found.</h4>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    // Clear text box with clear text button
+    $('.clear-button').on('click', function () {
+        $('#courses').val('')
+    });
+
+    // Show the first 10 courses when the text input box is active
+    $('#course').focus(function () {
+        var courses = $(this).parent().children('.course-choices-dropdown').children('div');
+        for (var i = 0; i < 10; i++) {
+            courses.eq(i).show();
+        }
+    });
+
+    // Show the dropdown when the text input box is active or cleared
+    $('#course').on('focus keyup', function () {
+        var typedLetters = this.value;
+        var courses = $(this).parent().children('.course-choices-dropdown').children('div');
+        var dropdown = $(this).parent().children('.course-choices-dropdown');
+
+        // If the input field is cleared, show all options
+        if (typedLetters === '') {
+            courses.each(function () {
+                $(this).show();
+                var instance = new Mark(this);
+                instance.unmark();
+            });
+            dropdown.show();
+        }
+    });
+
+    // Search and highlight the typed letters
+    $('#course').on('input', function () {
+        var typedLetters = this.value;
+        var courses = $(this).parent().children('.course-choices-dropdown').children('div');
+        var dropdown = $(this).parent().children('.course-choices-dropdown');
+
+        courses.each(function () {
+            var course = $(this).text();
+            if (course.toLowerCase().startsWith(typedLetters.toLowerCase())) {
+                $(this).show();
+                var instance = new Mark(this);
+                instance.unmark();
+                instance.mark(typedLetters, { element: 'span', className: 'highlight' });
+            } else {
+                $(this).hide();
+                var instance = new Mark(this);
+                instance.unmark();
+            }
+        });
+
+        // If there are no visible options, hide the dropdown
+        if (!dropdown.children('div:visible').length) {
+            dropdown.hide();
+        }
+    });
+
+    // Click on the suggested items in the dropdown
+    $(document).on('click', '.course-choices-dropdown div:nth-child(n)', function () {
+        console.log(this)
+        $('#course').val($(this).text());
+        $(this).parent().hide();
+    });
+</script>
 {% endblock %}
