@@ -74,8 +74,10 @@ block content %}
             },
             blur: function () {
                 console.log("Course input blurred");
-                $clearButton.css({ opacity: 0, 'pointer-events': 'none' });
-                $courseChoicesDropdown.css({ display: 'none' });
+                setTimeout(function () {
+                    $clearButton.css({ opacity: 0, 'pointer-events': 'none' });
+                    $courseChoicesDropdown.css({ display: 'none' });
+                }, 100);
             },
             keyup: function () {
                 console.log("Key pressed in course input");
@@ -94,9 +96,7 @@ block content %}
             console.log("Course choice clicked");
             var courseText = $(this).text();
             $courseInput.val(courseText);
-            setTimeout(function () {
-                $(this).parent().hide();
-            }.bind(this), 0);
+            $(this).parent().hide();
         });
 
         $quickSearchCourses.on('click', function () {
