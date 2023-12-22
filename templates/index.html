@@ -51,71 +51,102 @@ block content %}
 </div>
 
 <script>
-    // Clear text box with clear text button
     $(document).ready(function () {
-        $('.clear-button').on('click', function () {
-            $('#course').val('')
+        var $courseInput = $('#course'),
+            $clearButton = $('.clear-button i'),
+            $courseChoicesDropdown = $courseInput.parent().children('.course-choices-dropdown'),
+            $courses = $courseChoicesDropdown.children('div'),
+            $quickSearchCourses = $('.search-quick ul li');
+
+        console.log("Document ready");
+
+        $clearButton.on('click', function () {
+            console.log("Clear button clicked");
+            $courseInput.val('');
         });
 
-
-        // Show the first 10 courses when the text input box is active
-        $('#course').focus(function () {
-            var courses = $(this).parent().children('.course-choices-dropdown').children('div');
-            for (var i = 0; i < 10; i++) {
-                courses.eq(i).show();
-            }
-        });
-
-        // Show the dropdown when the text input box is active or cleared
-        $('#course').on('focus keyup', function () {
-            var typedLetters = this.value;
-            var courses = $(this).parent().children('.course-choices-dropdown').children('div');
-            var dropdown = $(this).parent().children('.course-choices-dropdown');
-
-            // If the input field is cleared, show all options
-            if (typedLetters === '') {
-                courses.each(function () {
-                    $(this).show();
-                    var instance = new Mark(this);
-                    instance.unmark();
-                });
-                dropdown.show();
-            }
-        });
-
-        // Search and highlight the typed letters
-        $('#course').on('input', function () {
-            var typedLetters = this.value;
-            var courses = $(this).parent().children('.course-choices-dropdown').children('div');
-            var dropdown = $(this).parent().children('.course-choices-dropdown');
-
-            courses.each(function () {
-                var course = $(this).text();
-                if (course.toLowerCase().startsWith(typedLetters.toLowerCase())) {
-                    $(this).show();
-                    var instance = new Mark(this);
-                    instance.unmark();
-                    instance.mark(typedLetters, { element: 'span', className: 'highlight' });
-                } else {
-                    $(this).hide();
-                    var instance = new Mark(this);
-                    instance.unmark();
+        $courseInput.on({
+            focus: function () {
+                console.log("Course input focused");
+                $clearButton.css({ opacity: 1, 'pointer-events': 'all' });
+                $courseChoicesDropdown.css({ display: 'flex' });
+                showFirstCourses();
+            },
+            blur: function () {
+                console.log("Course input blurred");
+                $clearButton.css({ opacity: 0, 'pointer-events': 'none' });
+                $courseChoicesDropdown.css({ display: 'none' });
+            },
+            keyup: function () {
+                console.log("Key pressed in course input");
+                var typedLetters = this.value;
+                if (typedLetters === '') {
+                    showAllCourses();
                 }
+            },
+            input: function () {
+                console.log("Input changed in course input");
+                filterAndHighlightCourses(this.value);
+            }
+        });
+
+        $courses.on('click', function () {
+            console.log("Course choice clicked");
+            var courseText = $(this).text();
+            $courseInput.val(courseText);
+            setTimeout(function () {
+                $(this).parent().hide();
+            }.bind(this), 0);
+        });
+
+        $quickSearchCourses.on('click', function () {
+            console.log("Quick search choice clicked");
+            var courseText = $(this).children('span').text();
+            $courseInput.val(courseText);
+        })
+
+        function showFirstCourses() {
+            console.log("Showing first courses");
+            for (var i = 0; i < 10; i++) {
+                $courses.eq(i).show();
+            }
+        }
+
+        function showAllCourses() {
+            console.log("Showing all courses");
+            $courses.each(function () {
+                $(this).show();
+                var instance = new Mark(this);
+                instance.unmark();
+            });
+            $courseChoicesDropdown.show();
+        }
+
+        function toggleCourseVisibility(shouldShow, courseElement, typedLetters) {
+            if (shouldShow) {
+                courseElement.show();
+                var instance = new Mark(courseElement);
+                instance.unmark();
+                instance.mark(typedLetters, { element: 'span', className: 'highlight' });
+            } else {
+                courseElement.hide();
+                var instance = new Mark(courseElement);
+                instance.unmark();
+            }
+        }
+
+        function filterAndHighlightCourses(typedLetters) {
+            console.log("Filtering and highlighting courses");
+            $courses.each(function () {
+                var course = $(this).text();
+                toggleCourseVisibility(course.toLowerCase().startsWith(typedLetters.toLowerCase()), $(this), typedLetters);
             });
 
-            // If there are no visible options, hide the dropdown
-            if (!dropdown.children('div:visible').length) {
-                dropdown.hide();
+            if (!$courseChoicesDropdown.children('div:visible').length) {
+                console.log("Hiding dropdown as no visible options");
+                $courseChoicesDropdown.hide();
             }
-        });
-
-        // Click on the suggested items in the dropdown
-        $('.course-choices-dropdown').on('click', 'div', function () {
-            console.log("2")
-            var clickedDivText = $(this).text();
-            $('#course').val(clickedDivText);
-            $(this).parent().hide();
-        });
+        }
     });
 </script>
 {% endblock %}

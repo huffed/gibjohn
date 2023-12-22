@@ -387,6 +387,7 @@ main {
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    background: none;
                   }
 
                   i {
@@ -395,7 +396,7 @@ main {
                   }
 
                   .clear-button i {
-                    pointer-events: all;
+                    pointer-events: none;
                     cursor: pointer;
                     opacity: 0;
                   }
@@ -430,16 +431,6 @@ main {
                       font-weight: bold;
                     }
                   }
-
-                  &:focus-within {
-                    .course-choices-dropdown {
-                      display: flex;
-                    }
-
-                    .clear-button i {
-                      opacity: 1;
-                    }
-                  }
                 }
 
                 .primary-button {
@@ -449,7 +440,7 @@ main {
 
                   &:hover {
                     transform: none;
-                    box-shadow: 0 0.6rem 3.1rem -0.8rem @base-color-accent;
+                    box-shadow: 0 0.6rem 1.6rem -0.8rem @base-color-accent;
                   }
                 }
               }
