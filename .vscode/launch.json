@@ -22,7 +22,7 @@
         "FLASK_DEBUG": "1",
         "PYDEVD_DISABLE_FILE_VALIDATION": "1"
       },
-      "args": ["run"],
+      "args": ["run", "-p 3000"],
       "jinja": true
     },
     {
@@ -34,7 +34,7 @@
         "FLASK_APP": "app.py",
         "FLASK_DEBUG": "0"
       },
-      "args": ["run", "--no-debugger", "--no-reload"],
+      "args": ["run", "-p 3000", "--no-debugger", "--no-reload"],
       "jinja": true
     }
   ]
