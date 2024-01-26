@@ -1,152 +1,114 @@
-{% extends 'base.html' %} {% block title_extension %} - Home{% endblock %} {% block preface_body %}
-{% include 'header.html' %}
-{% endblock %}{%
-block content %}
-<div class="primary-content">
-    <div class="main-search">
-        <div class="main-search-container">
-            <div class="main-search-tool">
-                <h2>Find the<br>perfect tutor!</h2>
-                {% if courses %}
-                {% if courses|length >= 3 %}
-                <div class="mobile-style-container">
-                    <div class="search">
-                        <form action="" method="post" class="course-search-box">
-                            <div class="form-container">
-                                {{form.csrf_token}}
-                                <div class="search-course">
-                                    <i class="fa-solid fa-book-open"></i>
-                                    {{ form.course(placeholder='Try "' ~ course_to_try ~ '"') }}
-                                    <div class="clear-button">
-                                        <i class="fa-solid fa-circle-xmark"></i>
-                                    </div>
-                                    <div class="course-choices-dropdown">
-                                        {% for course, icon, icon_type in courses %}
-                                        <div>{{course}}</div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                {{form.submit(class="primary-button")}}
-                            </div>
-                        </form>
-                    </div>
-                    <div class="search-quick">
-                        <ul>
-                            {% for course, icon, icon_type in courses %}
-                            <li data-search="{{course}}">
-                                <i class="fa-{{icon_type}} fa-{{icon}}"></i>
-                                <span class="name">{{course}}</span>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-                {% endif %}
-                {% else %}
-                <h4>No courses found.</h4>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
+{% extends 'base.html' %} {% block title_extension %} - Home{% endblock %} {%
+block preface_body %} {% include 'header.html' %} {% endblock %}{% block content
+%}
+<div class="primary-content"></div>
 
 <script>
-    $(document).ready(function () {
-        var $courseInput = $('#course'),
-            $clearButton = $('.clear-button i'),
-            $courseChoicesDropdown = $courseInput.parent().children('.course-choices-dropdown'),
-            $courses = $courseChoicesDropdown.children('div'),
-            $quickSearchCourses = $('.search-quick ul li');
+  $(document).ready(function () {
+    var $courseInput = $("#course"),
+      $clearButton = $(".clear-button i"),
+      $courseChoicesDropdown = $courseInput
+        .parent()
+        .children(".course-choices-dropdown"),
+      $courses = $courseChoicesDropdown.children("div"),
+      $quickSearchCourses = $(".search-quick ul li");
 
-        console.log("Document ready");
+    console.log("Document ready");
 
-        $clearButton.on('click', function () {
-            console.log("Clear button clicked");
-            $courseInput.val('');
-        });
-
-        $courseInput.on({
-            focus: function () {
-                console.log("Course input focused");
-                $clearButton.css({ opacity: 1, 'pointer-events': 'all' });
-                $courseChoicesDropdown.css({ display: 'flex' });
-                showFirstCourses();
-            },
-            blur: function () {
-                console.log("Course input blurred");
-                setTimeout(function () {
-                    $clearButton.css({ opacity: 0, 'pointer-events': 'none' });
-                    $courseChoicesDropdown.css({ display: 'none' });
-                }, 100);
-            },
-            keyup: function () {
-                console.log("Key pressed in course input");
-                var typedLetters = this.value;
-                if (typedLetters === '') {
-                    showAllCourses();
-                }
-            },
-            input: function () {
-                console.log("Input changed in course input");
-                filterAndHighlightCourses(this.value);
-            }
-        });
-
-        $courses.on('click', function () {
-            console.log("Course choice clicked");
-            var courseText = $(this).text();
-            $courseInput.val(courseText);
-            $(this).parent().hide();
-        });
-
-        $quickSearchCourses.on('click', function () {
-            console.log("Quick search choice clicked");
-            var courseText = $(this).children('span').text();
-            $courseInput.val(courseText);
-        })
-
-        function showFirstCourses() {
-            console.log("Showing first courses");
-            for (var i = 0; i < 10; i++) {
-                $courses.eq(i).show();
-            }
-        }
-
-        function showAllCourses() {
-            console.log("Showing all courses");
-            $courses.each(function () {
-                $(this).show();
-                var instance = new Mark(this);
-                instance.unmark();
-            });
-            $courseChoicesDropdown.show();
-        }
-
-        function toggleCourseVisibility(shouldShow, courseElement, typedLetters) {
-            if (shouldShow) {
-                courseElement.show();
-                var instance = new Mark(courseElement);
-                instance.unmark();
-                instance.mark(typedLetters, { element: 'span', className: 'highlight' });
-            } else {
-                courseElement.hide();
-                var instance = new Mark(courseElement);
-                instance.unmark();
-            }
-        }
-
-        function filterAndHighlightCourses(typedLetters) {
-            console.log("Filtering and highlighting courses");
-            $courses.each(function () {
-                var course = $(this).text();
-                toggleCourseVisibility(course.toLowerCase().startsWith(typedLetters.toLowerCase()), $(this), typedLetters);
-            });
-
-            if (!$courseChoicesDropdown.children('div:visible').length) {
-                console.log("Hiding dropdown as no visible options");
-                $courseChoicesDropdown.hide();
-            }
-        }
+    $clearButton.on("click", function () {
+      console.log("Clear button clicked");
+      $courseInput.val("");
     });
+
+    $courseInput.on({
+      focus: function () {
+        console.log("Course input focused");
+        $clearButton.css({ opacity: 1, "pointer-events": "all" });
+        $courseChoicesDropdown.css({ display: "flex" });
+        showFirstCourses();
+      },
+      blur: function () {
+        console.log("Course input blurred");
+        setTimeout(function () {
+          $clearButton.css({ opacity: 0, "pointer-events": "none" });
+          $courseChoicesDropdown.css({ display: "none" });
+        }, 100);
+      },
+      keyup: function () {
+        console.log("Key pressed in course input");
+        var typedLetters = this.value;
+        if (typedLetters === "") {
+          showAllCourses();
+        }
+      },
+      input: function () {
+        console.log("Input changed in course input");
+        filterAndHighlightCourses(this.value);
+      },
+    });
+
+    $courses.on("click", function () {
+      console.log("Course choice clicked");
+      var courseText = $(this).text();
+      $courseInput.val(courseText);
+      $(this).parent().hide();
+    });
+
+    $quickSearchCourses.on("click", function () {
+      console.log("Quick search choice clicked");
+      var courseText = $(this).children("span").text();
+      $courseInput.val(courseText);
+    });
+
+    function showFirstCourses() {
+      console.log("Showing first courses");
+      for (var i = 0; i < 10; i++) {
+        $courses.eq(i).show();
+      }
+    }
+
+    function showAllCourses() {
+      console.log("Showing all courses");
+      $courses.each(function () {
+        $(this).show();
+        var instance = new Mark(this);
+        instance.unmark();
+      });
+      $courseChoicesDropdown.show();
+    }
+
+    function toggleCourseVisibility(shouldShow, courseElement, typedLetters) {
+      if (shouldShow) {
+        courseElement.show();
+        var instance = new Mark(courseElement);
+        instance.unmark();
+        instance.mark(typedLetters, {
+          element: "span",
+          className: "highlight",
+        });
+      } else {
+        courseElement.hide();
+        var instance = new Mark(courseElement);
+        instance.unmark();
+      }
+    }
+
+    function filterAndHighlightCourses(typedLetters) {
+      console.log("Filtering and highlighting courses");
+      $courses.each(function () {
+        var course = $(this).text();
+        toggleCourseVisibility(
+          course.toLowerCase().startsWith(typedLetters.toLowerCase()),
+          $(this),
+          typedLetters
+        );
+      });
+
+      if (!$courseChoicesDropdown.children("div:visible").length) {
+        console.log("Hiding dropdown as no visible options");
+        $courseChoicesDropdown.hide();
+      }
+    }
+  });
 </script>
 {% endblock %}
